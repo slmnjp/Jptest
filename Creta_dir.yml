@@ -1,0 +1,24 @@
+---
+- name: Create a directory and a file with some contents
+  hosts: Test-3_ansible
+  remote_user: ansible
+  become: yes
+
+  tasks:
+    - name: Add directory
+      file:
+        path: /tmp/dr
+        state: directory
+        mode: 0755
+    
+    - name: add file
+      file:
+        path: /tmp/dr/sel
+        state: touch
+        mode: 0755
+
+    - name: Write some contents to the file
+      lineinfile:
+        path: /tmp/dr/sel
+        line: "What's up JuicePlus teammates?"
+        create: yes
